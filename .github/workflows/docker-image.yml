@@ -6,7 +6,7 @@ on:
     
         
 env:
-  HUB: https://ghcr.io
+  HUB: ghcr.io
   TAG: latest
   
 jobs:
@@ -28,4 +28,4 @@ jobs:
       if: ${{ success() }}
       run: |
         echo ${{ secrets.GITHUB_TOKEN }} | docker login ${HUB} --username ${USER} --password-stdin
-        docker push ${HUB}/${GITHUB_REPOSITORY}/kyma:${TAG}
+        docker push ${HUB}/${GITHUB_REPOSITORY}:${TAG}
