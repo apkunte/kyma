@@ -15,8 +15,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build -f ../Dockerfile -t kyma:${TAG}
+    - name: Build image ${{ github.event.inputs.app }} for ${{ github.event.inputs.componentdir }} from ${{ github.event.inputs.dir }}
+      run: |
+          docker build -f ./Dockerfile \
+          -t ${HUB}/${GITHUB_REPOSITORY}/${{ github.event.inputs.app }}:${TAG} \
+          ${{ github.event.inputs.dir }}
       
     - name: Push the image to GitHub Package Registry
       if: ${{ success() }}
