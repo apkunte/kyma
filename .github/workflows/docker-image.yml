@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build -f ./Dockerfile --tag ${HUB}/${GITHUB_REPOSITORY}/kyma:${TAG}
+      run: docker build -f ./Dockerfile --tag kyma:${TAG}
       
     - name: Push the image to GitHub Package Registry
       if: ${{ success() }}
