@@ -1,8 +1,22 @@
 name: Build and publish Docker image
 
 on:
-  push:
-    branches: [ master ]
+#   push:
+#     branches: [ master ]
+    
+  workflow_dispatch:
+    inputs:
+      componentdir:
+        description: The directory in the repo where the component lives
+        required: true
+      app:
+        description: The name for the package (e.g. s4mock, brain or calculationservice)
+        required: true
+      dir:
+        description: The directory containing the app artifacts (relative to the component's location in the repo)
+        required: true
+        default: '.'
+        
 env:
   HUB: https://ghcr.io
   TAG: latest
@@ -18,7 +32,7 @@ jobs:
     - name: Build image ${{ github.event.inputs.app }} for ${{ github.event.inputs.componentdir }} from ${{ github.event.inputs.dir }}
       run: |
           docker build -f ./Dockerfile \
-          -t ${HUB}/${GITHUB_REPOSITORY}/${{ github.event.inputs.app }}:${TAG} \
+          -t ${HUB}/${GITHUB_REPOSITORY}/kyma:${TAG} \
           ${{ github.event.inputs.dir }}
       
     - name: Push the image to GitHub Package Registry
