@@ -12,16 +12,16 @@ env:
 jobs:
 
   build:
-
+# -t ${HUB}/${GITHUB_REPOSITORY}/kyma:${TAG} \
+#           .
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
     - name: Build image 
       run: |
-          docker build -f ./Dockerfile \
-          -t ${HUB}/${GITHUB_REPOSITORY}/kyma:${TAG} \
-          .
+          docker build -f ./Dockerfile 
+          
       
     - name: Push the image to GitHub Package Registry
       if: ${{ success() }}
