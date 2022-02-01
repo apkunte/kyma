@@ -1,6 +1,7 @@
 FROM node:12.18.1
 
 # Create app directory
+ENV NODE_ENV=production
 WORKDIR /usr/src/app
 
 # Install app dependencies
