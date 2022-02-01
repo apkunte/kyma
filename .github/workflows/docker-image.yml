@@ -12,9 +12,7 @@ env:
 jobs:
 
   build:
-#   -f ./Dockerfile
-# -t ${HUB}/${GITHUB_REPOSITORY}/kyma:${TAG} \
-#           .
+
     runs-on: ubuntu-latest
 
     steps:
